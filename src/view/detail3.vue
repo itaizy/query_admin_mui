@@ -130,13 +130,14 @@
 </template>
 
 <script>
-import { Picker, TextInput, InfiniteLoading, Row, Col } from "@nutui/nutui";
+// import { Picker, TextInput, InfiniteLoading, Row, Col } from "@nutui/nutui";
+import {InfiniteLoading, Row, Col } from "@nutui/nutui";
 import axios from 'axios';
-import skeleton from "../skeleton/skeleton.vue";
+// import skeleton from "../skeleton/skeleton.vue";
 export default {
     components: {
-        "nut-picker": Picker,
-        "nut-textinput": TextInput,
+        // "nut-picker": Picker,
+        // "nut-textinput": TextInput,
         "nut-infiniteloading": InfiniteLoading,
         "nut-row": Row,
         "nut-col": Col,
@@ -177,7 +178,7 @@ export default {
         };
     },
     created() {
-        this.listData = [...[this.listData[0]], this.data[this.listData[0][0]] ];
+        // this.listData = [...[this.listData[0]], this.data[this.listData[0][0]] ];
     },
     mounted() {
         this.setChooseValue(this.$route.query.province.split('-'))

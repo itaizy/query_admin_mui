@@ -4,9 +4,12 @@
             <div class="logo-wrap">
                 <span class="logo"></span>
             </div>
+             <p> &nbsp;</p>
             <p class="intro">
-                Vue技术栈单页面构建工具
+                <font size="5" color="red">金状元专业录取线</font> 
             </p>
+            <p> &nbsp;</p>
+            <p> &nbsp;</p>
             
             <nut-cell :title="selectProvice" desc="选择考生省份" :showIcon="true" @click.native="openPickerP">
             </nut-cell>
@@ -19,17 +22,18 @@
                 :disabled="false"
             />
             <p class="link">
-                <a href="https://github.com/jdf2e/Gaea4" class="btn">
-                    GITHUB
-                </a>
-                <a href="https://www.npmjs.com/package/gaea-cli" class="btn">
+                <!-- <a href="https://github.com/jdf2e/Gaea4" class="btn" @click.native="clkTag">
+                    查询
+                </a> -->
+                <!-- <a href="https://www.npmjs.com/package/gaea-cli" class="btn">
                     NPM
-                </a>
+                </a> -->
                 <!-- <router-link to="/detail" class="btn btn-start">
                     起步
                 </router-link> -->
+  
                 <router-link to="" class="btn btn-start" @click.native="clkTag">
-                    起步
+                    开始
                 </router-link>
             </p>
             <!-- <nut-button 
@@ -208,6 +212,22 @@ export default {
         border: 1px solid #f6f6f6;
     }
 }
+.btn {
+        height: 0.8rem;
+        line-height: 0.8rem;
+        border-radius: 0.8rem;
+        border: 1px solid #da642e;
+        display: inline-block;
+        padding: 0 0.6rem;
+        font-size: 0.28rem;
+        color: #da642e;
+        margin: 0.2rem;
+    }
+.btn-start {
+    background: #f1f2f3;
+    color: #7f8c8d;
+    border: 1px solid #f6f6f6;
+    }
 .logo-wrap {
     text-align: center;
     padding: 20px;
@@ -237,5 +257,8 @@ export default {
         background:url('../asset/img/webp/logo.webp') 0 0 no-repeat;
         background-size:100% 100%;
     }
+}
+.p {
+    margin: 200px;
 }
 </style>
