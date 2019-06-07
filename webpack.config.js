@@ -125,8 +125,9 @@ module.exports = (env,argv)=> {
                 //压缩js
                   new UglifyJsPlugin({
                     uglifyOptions: {
+                        warnings: false,
                         compress: {
-                          warnings: false,
+                          
                           drop_debugger: true, // console
                           drop_console: true
                         },

@@ -9,8 +9,8 @@
   "scripts": {
     "compress": "node .tinypng.js",
     "lint": "eslint --ext  .js,.vue src --fix",
-    "dev": " webpack-dev-server --mode development   -d --open --hide-modules --progress",
-    "build": "webpack --mode production --hide-modules --progress",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development   -d --open --hide-modules --progress",
+    "build": "cross-env NODE_ENV=development webpack --mode production --hide-modules --progress",
     "upload": "webpack --mode production --env.upload --hide-modules --progress",
     "skeleton-json": "webpack --config ./src/skeleton/webpack.skeleton.config.js --mode production --hide-modules --progress",
     "skeleton-html": "node ./src/skeleton/skeleton.js",
