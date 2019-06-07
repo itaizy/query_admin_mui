@@ -107,6 +107,7 @@ export default {
         this.modifyYear()
         this.selectType = '理科'
         this.selectProvice = '华北-河北'
+        this.inputS = '180~699分数'
         // this.selectType = [...[this.T_listData[0]]];
         // this.T_listData = [...[this.T_listData[0]], this.data[this.T_listData[0][0]] ];
     },
@@ -115,10 +116,14 @@ export default {
     destroyed() {},
     methods: {
         clkTag(){
+            if (Number.isNaN(Number(this.inputS))) {
+                this.inputS = '600'
+            } 
             this.$router.push({ path: '/detail3', query: {
                 province: this.selectProvice, 
                 local_type: this.selectType, 
                 score: this.inputS}});
+            
         },
         switchPicker(param) {
             this[`${param}`] = !this[`${param}`];
@@ -138,8 +143,8 @@ export default {
             }
             switch(index) {
                 case 1: 
-                    console.log('GGGGGGGGGGGGG')
-                    console.log('137:::' + value)
+                    // console.log('GGGGGGGGGGGGG')
+                    // console.log('137:::' + value)
                     let i = this.listData[0].indexOf(value);
                     this.listData.splice(index, 1, [...this.data[this.listData[0][i]]]);
                     chooseValue = chooseValue ? chooseValue : this.listData[index][0];

@@ -32,6 +32,9 @@
             <h2 style="font-size:0.5rem" justify="center" align="middle" v-for="(or,idx) in srank" :key="idx">
                 {{or[0]}}年全省排{{or[1]}}名 &nbsp;
             </h2>
+            <p class="intro">
+                <font size="3" color="blue">匹配到{{nUniv}}所学校,{{nSp}}个专业,{{nTotal}}条内容</font> 
+            </p>
             <nut-infiniteloading 
                 @loadmore="onInfinite" 
                 :is-show-mod="true" 
@@ -40,6 +43,7 @@
                 :threshold="200"
             >
                 <nut-cell 
+                    :title = "this.inputStext"
                     desc = "最低分|最高分"
                     :showIcon = "false"
                     >
@@ -101,10 +105,9 @@
                         <!-- <Table type="width=100%" :loading="loading" stripe :columns="columns1" :data="one.uscore"></Table> -->
                     </div>
                     <!-- </li> -->
-                </ul>
             </nut-infiniteloading>
 
-            <nut-picker 
+            <!-- <nut-picker 
                 :is-visible="P_isVisible" 
                 title="请选择省份"
                 :list-data="listData"
@@ -122,16 +125,20 @@
                 @close="switchPicker('T_isVisible')"
                 @confirm="setYearValue"
             >
-            </nut-picker>
-            <div class="jdc-logo"><s></s></div>
+            </nut-picker> -->
+            <!-- <div class="jdc-logo"><s></s></div> -->
+            <nut-cell title = "长按关注 查询更多" >
+            </nut-cell>
+            <img style="width:100%" src="../asset/img/qrcode_for_gh_bd5721f996b8_258.jpg"/>
         </div>
         <!-- <skeleton /> -->
+        
     </div>
 </template>
 
 <script>
 // import { Picker, TextInput, InfiniteLoading, Row, Col } from "@nutui/nutui";
-import {InfiniteLoading, Row, Col } from "@nutui/nutui";
+import {InfiniteLoading } from "@nutui/nutui";
 import axios from 'axios';
 // import skeleton from "../skeleton/skeleton.vue";
 export default {
@@ -139,8 +146,8 @@ export default {
         // "nut-picker": Picker,
         // "nut-textinput": TextInput,
         "nut-infiniteloading": InfiniteLoading,
-        "nut-row": Row,
-        "nut-col": Col,
+        // "nut-row": Row,
+        // "nut-col": Col,
         // skeleton
     },
     data() {
@@ -150,6 +157,7 @@ export default {
             selectP: '',
             selectT: '',
             inputS: '560',
+            inputStext: '560分',
             srank: null,
             P_isVisible: false,
             T_isVisible: false,
@@ -174,7 +182,10 @@ export default {
             isLoading: false,
             isErr: false,
             timer: null,
-            scoreDetail: null
+            scoreDetail: null,
+            nUniv: 0,
+            nSp: 0,
+            nTotal: 0
         };
     },
     created() {
@@ -184,6 +195,7 @@ export default {
         this.setChooseValue(this.$route.query.province.split('-'))
         this.selectT = this.$route.query.local_type
         this.inputS = this.$route.query.score
+        this.inputStext = this.inputS + '分'
             // this.tableHeight = window.innerHeight - this.$refs.table.$el.offsetTop - 40
             // this.tableHeight = window.innerHeight
         axios.get('./serverapi/qqscorefree', { 
@@ -194,12 +206,17 @@ export default {
                 }
             }).then(response => {
             let kp = response.data.data
+            // console.log('197:' + kp)
+            // console.log('198:' + kp.replace(new RegExp('\'','g'),'"').replace(/-1/g, '\"-\"'))
             this.scoreDetail = JSON.parse('{"sd": '+ kp.replace(new RegExp('\'','g'),'"').replace(/-1/g, '\"-\"') +'}')['sd']
             this.srank = response.data.srank
             this.counta = 0;
             for (let it in response.data.counts) {
                 this.counta = this.counta + it[1]
             }
+            this.nUniv = response.data.nuniv
+            this.nSp = response.data.nsp
+            this.nTotal = response.data.total
             //this.counta = _.sumBy(response.data.counts, function(o) {console.log(o); return o[1]})
             // this.scoreDetail = JSONArray.fromObject(response.data.data);
         })
@@ -211,7 +228,7 @@ export default {
         onInfinite () {
             this.isLoading = true;
             this.timer = setTimeout(() => {
-                if (this.page <= 5) {
+                if (this.page <= 3) {
                     this.data2 = new Array(this.num * this.page);
                     this.page = this.page + 1;
                 } else {
