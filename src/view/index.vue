@@ -118,7 +118,10 @@ export default {
         clkTag(){
             if (Number.isNaN(Number(this.inputS))) {
                 this.inputS = '600'
-            } 
+            }
+            if (Number(this.inputS) <= 180 || Number(this.inputS) >= 700) {
+                this.inputS = '600'
+            }
             this.$router.push({ path: '/detail3', query: {
                 province: this.selectProvice, 
                 local_type: this.selectType, 
