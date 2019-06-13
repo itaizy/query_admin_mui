@@ -112,7 +112,10 @@ export default {
         // this.T_listData = [...[this.T_listData[0]], this.data[this.T_listData[0][0]] ];
     },
     mounted() {
-        this.setChooseValue(this.$route.query.province.split('-'))
+        // console.log(len(this.$route.query))
+        if ('province' in this.$route.query) {
+            this.setChooseValue(this.$route.query.province.split('-'))
+        }
     },
     destroyed() {},
     methods: {
