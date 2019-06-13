@@ -6,7 +6,7 @@
             </div>
              <p> &nbsp;</p>
             <p class="intro">
-                <font size="5" color="red">金状元专业录取线</font> 
+                <font size="5" color="red">历年考生去向</font> 
             </p>
             <p> &nbsp;</p>
             <p> &nbsp;</p>
@@ -112,6 +112,7 @@ export default {
         // this.T_listData = [...[this.T_listData[0]], this.data[this.T_listData[0][0]] ];
     },
     mounted() {
+        this.setChooseValue(this.$route.query.province.split('-'))
     },
     destroyed() {},
     methods: {

@@ -1,6 +1,6 @@
 {
   "name": "query_admin_mui",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A project named query_admin_mui",
   "publicPath": ".",
   "ftpServer": "static.360buyimg.com",
@@ -10,7 +10,7 @@
     "compress": "node .tinypng.js",
     "lint": "eslint --ext  .js,.vue src --fix",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development   -d --open --hide-modules --progress",
-    "build": "cross-env NODE_ENV=development webpack --mode production --hide-modules --progress",
+    "build": "cross-env NODE_ENV=production webpack --mode production --hide-modules --progress",
     "upload": "webpack --mode production --env.upload --hide-modules --progress",
     "skeleton-json": "webpack --config ./src/skeleton/webpack.skeleton.config.js --mode production --hide-modules --progress",
     "skeleton-html": "node ./src/skeleton/skeleton.js",

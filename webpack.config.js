@@ -25,7 +25,7 @@ module.exports = (env,argv)=> {
         output:{
             path: path.resolve(__dirname, 'build' + '/' + config.version),
             publicPath: config.publicPath + '/'+config.version+'/',
-            filename: 'js/[name].js'
+            filename: 'js/[name].[chunkhash].js'
         },
         stats: {
             entrypoints: false,

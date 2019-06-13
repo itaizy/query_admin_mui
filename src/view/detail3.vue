@@ -44,7 +44,7 @@
             >
                 <nut-cell 
                     :title = "this.inputStext"
-                    desc = "最低分|最高分"
+                    desc = "2017年|2018年"
                     :showIcon = "false"
                     >
                 </nut-cell>
@@ -105,6 +105,9 @@
                         <!-- <Table type="width=100%" :loading="loading" stripe :columns="columns1" :data="one.uscore"></Table> -->
                     </div>
                     <!-- </li> -->
+                    <nut-cell title = "长按关注 查询更多" >
+                    </nut-cell>
+                    <img style="width:100%" src="../asset/img/qrcode_for_gh_bd5721f996b8_258.jpg"/>
             </nut-infiniteloading>
 
             <!-- <nut-picker 
@@ -127,9 +130,7 @@
             >
             </nut-picker> -->
             <!-- <div class="jdc-logo"><s></s></div> -->
-            <nut-cell title = "长按关注 查询更多" >
-            </nut-cell>
-            <img style="width:100%" src="../asset/img/qrcode_for_gh_bd5721f996b8_258.jpg"/>
+            
         </div>
         <!-- <skeleton /> -->
         
@@ -208,7 +209,13 @@ export default {
             let kp = response.data.data
             // console.log('197:' + kp)
             // console.log('198:' + kp.replace(new RegExp('\'','g'),'"').replace(/-1/g, '\"-\"'))
-            this.scoreDetail = JSON.parse('{"sd": '+ kp.replace(new RegExp('\'','g'),'"').replace(/-1/g, '\"-\"') +'}')['sd']
+            console.log('----------------')
+            // console.log(kp)
+            // console.log(kp.replace(new RegExp('\'','g'),'"').replace(/-1,/g, '\"-\",').replace(/'-1'/g, '-'))
+            // this.scoreDetail = JSON.parse('{"sd": '+ kp.replace(new RegExp('\'','g'),'"').replace(/-1/g, '\"-\"').replace(/"-1"/g, '-') +'}')['sd']
+            this.scoreDetail = JSON.parse('{"sd": '+ kp.replace(new RegExp('\'','g'),'"') +'}')['sd']
+            // console.log('***************')
+            // console.log(this.scoreDetail)
             this.srank = response.data.srank
             this.counta = 0;
             for (let it in response.data.counts) {
